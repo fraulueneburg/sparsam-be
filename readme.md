@@ -1,11 +1,11 @@
-# [IN REVISION] 👷🐽<br />sparsam - An awesome budgeting app
+# [IN REVISION] <span style="speak: none;">👷🐽</span><br />sparsam - An awesome budgeting app
 
 > [!IMPORTANT]
 > Please note that this project is currently in revision. The demo still works, of course. You can follow my progress here or on [Linkedin](https://linkedin.com/in/fraulueneburg)
 
-## Demo
+### <span style="speak: none;">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sparsam.netlify.app](https://sparsam.netlify.app/)
 
-### See the Demo at <span style="speak_ none">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sparsam.netlify.app/](https://sparsam.netlify.app/)
+---
 
 ## Description
 
@@ -48,7 +48,7 @@ npm install axios
 
 ### Set up MongoDB
 
-- Install MongoDB 👉 https://docs.mongodb.com/manual/installation/
+- Install MongoDB <span style="speak: none;">👉</span> https://docs.mongodb.com/manual/installation/
 - Configure MongoDB connection
 
 ### Start the server
@@ -81,10 +81,19 @@ npm install axios
 | `POST /budget/updateexpense/:dailyExpenseId` | Updates an existing daily expense |
 | `DELETE /deleteexpense/:dailyExpenseId`      | Deletes an existing daily expense |
 
-## Contributing
+## Team
 
-Contributions are welcome! If you find a bug or want to add a new feature, please open an issue or submit a pull request.
+Sparsam was created in a team with [Michel Saber](https://github.com/michelsaber).
 
-## Authors
+---
 
-Sparsam is a full stack web app created by [Michel](https://github.com/michelsaber) and [Wiebke](https://github.com/fraulueneburg).
+## About Me
+
+I’m Wiebke, a Full Stack Web Developer and UI/UX Designer, currently living in Hamburg, Germany.  
+Usability is a top priority in my work and I am also strongly advocating for (and keep learning about) web accessibility.
+
+## Like this project? Let’s connect:
+
+<a href="https://linkedin.com/in/fraulueneburg" target="_blank">
+<img alt="LinkedIn" src="https://img.shields.io/badge/-linkedin-1572B6?&style=for-the-badge&logo=css3&logoColor=white" />
+</a>
