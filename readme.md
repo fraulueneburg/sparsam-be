@@ -7,7 +7,7 @@
 
 ## Demo
 
-### 👉&nbsp;&nbsp;See the demo at&nbsp;&nbsp;[sparsam.netlify.app](https://sparsam.netlify.app/)
+### 👉&nbsp;&nbsp;See the demo at&nbsp;&nbsp;[sparsam-app.netlify.app](https://sparsam-app.netlify.app/)
 
 ## Description
 
@@ -51,14 +51,12 @@ git clone https://github.com/fraulueneburg/sparsam-be.git
 ### Install dependencies:
 
 ```
-npm install mongo-db
-npm install express
-npm install axios
+npm install mongo-db express express-jwt axios bcryptjs cookie-parser cors jsonwebtoken mongoose morgan
 ```
 
-### Set up your backend
+### Set up your frontend
 
-- see https://github.com/fraulueneburg/sparsam-be for that
+- see https://github.com/fraulueneburg/sparsam-fe for that
 
 ### Set up MongoDB
 
