@@ -3,7 +3,7 @@ const DailyExpenses = require('../models/DailyExpenses.model')
 const router = require('express').Router()
 const { isAuthenticated } = require('../middlewares/jwt.auth')
 
-// BUDGET ROUTE
+// BUDGET
 
 router.get('/', isAuthenticated, async (req, res) => {
 	const userId = req.payload._id
@@ -12,7 +12,7 @@ router.get('/', isAuthenticated, async (req, res) => {
 	res.json({ respMonthlyBudget: foundMonthlyBudget, respDailyExpenses: foundDailyExpenses })
 })
 
-// BUDGET SETTINGS ROUTE
+// BUDGET SETTINGS
 
 router.get('/settings', isAuthenticated, async (req, res) => {
 	const userId = req.payload._id
@@ -20,7 +20,7 @@ router.get('/settings', isAuthenticated, async (req, res) => {
 	res.json({ respMonthlyBudget: foundMonthlyBudget })
 })
 
-// CREATE/UPDATE BUDGET ROUTE
+// CREATE/UPDATE BUDGET
 
 router.post('/create', isAuthenticated, async (req, res) => {
 	try {
@@ -56,7 +56,7 @@ router.post('/create', isAuthenticated, async (req, res) => {
 	}
 })
 
-// ADD DAILY EXPENSE ROUTE
+// ADD DAILY EXPENSE
 
 router.post('/addexpense', isAuthenticated, async (req, res) => {
 	try {
@@ -72,10 +72,11 @@ router.post('/addexpense', isAuthenticated, async (req, res) => {
 		res.status(201).json(newDailyExpense)
 	} catch (err) {
 		console.log(err)
+		res.status(500).json({ message: 'Error creating new expense' })
 	}
 })
 
-// UPDATE DAILY EXPENSE ROUTE
+// UPDATE DAILY EXPENSE
 
 router.post('/updateexpense/:dailyExpenseId', isAuthenticated, async (req, res) => {
 	const expenseId = req.params.dailyExpenseId
@@ -99,12 +100,12 @@ router.post('/updateexpense/:dailyExpenseId', isAuthenticated, async (req, res) 
 	}
 })
 
-// DELETE DAILY EXPENSE ROUTE
+// DELETE DAILY EXPENSE
 
 router.delete('/deleteexpense/:dailyExpenseId', isAuthenticated, async (req, res) => {
 	try {
-		const deletedBudget = await DailyExpenses.findByIdAndDelete({ _id: req.params.dailyExpenseId })
-		res.redirect(`/`)
+		await DailyExpenses.findByIdAndDelete({ _id: req.params.dailyExpenseId })
+		res.status(200).json({ message: 'Expense deleted successfully' })
 	} catch (err) {
 		console.log(err)
 	}
