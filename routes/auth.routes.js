@@ -19,6 +19,26 @@ router.post('/signup', async (req, res) => {
 	const { _id, email } = await User.findOne({ email: req.body.email })
 	const payload = { _id, email }
 
+	const newBudget = await MonthlyBudget.create({
+		user: payload._id,
+		currency: {
+			code: 'EUR',
+			name: 'Euro',
+			symbol: '€',
+			flag: 'EUR',
+			decimal_digits: 2,
+			number: 978,
+			name_plural: 'Euros',
+			thousands_separator: ' ',
+			decimal_separator: ',',
+			space_between_amount_and_symbol: true,
+			symbol_on_left: false,
+		},
+		earnings: [],
+		expenses: [],
+		categories: [],
+	})
+
 	const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
 		algorithm: 'HS256',
 		expiresIn: '6h',
