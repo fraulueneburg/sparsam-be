@@ -22,41 +22,6 @@ router.get('/settings', isAuthenticated, async (req, res) => {
 	res.json({ respMonthlyBudget: foundMonthlyBudget })
 })
 
-// CREATE/UPDATE BUDGET
-
-router.post('/create', isAuthenticated, async (req, res) => {
-	try {
-		const userId = req.payload._id
-		const newBudgetData = req.body
-		const budget = await MonthlyBudget.findOne({ user: userId })
-
-		if (budget.length === 0) {
-			const newBudget = await MonthlyBudget.create({
-				user: userId,
-				currency: newBudgetData.currency,
-				earnings: newBudgetData.earnings,
-				expenses: newBudgetData.expenses,
-				categories: newBudgetData.categories,
-			})
-			console.log('BE: New Budget created ', newBudget)
-		} else {
-			const updatedBudget = await MonthlyBudget.findByIdAndUpdate(
-				budget[0]._id,
-				{
-					currency: newBudgetData.currency,
-					earnings: newBudgetData.earnings,
-					expenses: newBudgetData.expenses,
-					categories: newBudgetData.categories,
-				},
-				{ new: true }
-			)
-			res.status(201).json(updatedBudget)
-		}
-	} catch (err) {
-		console.log(err)
-	}
-})
-
 // UPDATE CURRENCY
 
 router.post('/currency/update', isAuthenticated, async (req, res) => {
