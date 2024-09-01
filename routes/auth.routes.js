@@ -1,5 +1,6 @@
 const User = require('../models/User.model')
 const MonthlyBudget = require('../models/MonthlyBudget.model')
+const DailyExpenses = require('../models/DailyExpenses.model')
 const bcrypt = require('bcryptjs')
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
@@ -107,12 +108,33 @@ router.post('/profile', isAuthenticated, async (req, res) => {
 
 router.delete('/profile/delete', isAuthenticated, async (req, res) => {
 	const userId = req.payload._id
+
 	try {
-		await MonthlyBudget.deleteOne({ user: userId })
-		await User.findByIdAndDelete(userId, { new: true })
-		res.status(204).json({ message: 'deleted User' })
+		const dailyExpensesToDelete = await DailyExpenses.countDocuments({ user: userId })
+		if (dailyExpensesToDelete > 0) {
+			const dailyExpensesResult = await DailyExpenses.deleteMany({ user: userId })
+			if (dailyExpensesResult.deletedCount < dailyExpensesToDelete) {
+				return res.status(500).json({ message: 'Error while deleting daily expenses. Not all documents were removed.' })
+			}
+		}
+
+		const monthlyBudgetToDelete = await MonthlyBudget.countDocuments({ user: userId })
+		if (monthlyBudgetToDelete > 0) {
+			const monthlyBudgetResult = await MonthlyBudget.deleteOne({ user: userId })
+			if (monthlyBudgetResult.deletedCount === 0) {
+				return res.status(500).json({ message: 'Error while deleting monthly budget. Document not removed.' })
+			}
+		}
+
+		const userResult = await User.findByIdAndDelete(userId)
+		if (!userResult) {
+			return res.status(404).json({ message: 'Error while deleting user. User not found.' })
+		}
+
+		res.status(204).json({ message: 'User and associated data deleted successfully' })
 	} catch (err) {
-		console.log(err)
+		console.error('Error while deleting user:', err.message)
+		res.status(500).json({ message: `Error: ${err.message}` })
 	}
 })
 
