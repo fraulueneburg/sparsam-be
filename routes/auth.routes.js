@@ -22,19 +22,7 @@ router.post('/signup', async (req, res) => {
 
 	const newBudget = await MonthlyBudget.create({
 		user: payload._id,
-		currency: {
-			code: 'EUR',
-			name: 'Euro',
-			symbol: '€',
-			flag: 'EUR',
-			decimal_digits: 2,
-			number: 978,
-			name_plural: 'Euros',
-			thousands_separator: ' ',
-			decimal_separator: ',',
-			space_between_amount_and_symbol: true,
-			symbol_on_left: false,
-		},
+		currency: req.body.currency,
 		earnings: [],
 		expenses: [],
 		categories: [],
