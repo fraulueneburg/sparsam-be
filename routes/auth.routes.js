@@ -114,7 +114,7 @@ router.delete('/profile/delete', isAuthenticated, async (req, res) => {
 		if (dailyExpensesToDelete > 0) {
 			const dailyExpensesResult = await DailyExpenses.deleteMany({ user: userId })
 			if (dailyExpensesResult.deletedCount < dailyExpensesToDelete) {
-				return res.status(500).json({ message: 'Error while deleting daily expenses. Not all documents were removed.' })
+				return res.status(500).json({ message: 'Error: Not all daily expenses were removed.' })
 			}
 		}
 
