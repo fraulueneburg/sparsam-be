@@ -2,6 +2,7 @@ const MonthlyBudget = require('../models/MonthlyBudget.model')
 const DailyExpenses = require('../models/DailyExpenses.model')
 const router = require('express').Router()
 const { isAuthenticated } = require('../middlewares/jwt.auth')
+const mongoose = require('mongoose')
 
 // ---------------------------------------------------------------------------------------------------
 
@@ -267,11 +268,71 @@ router.post('/categories/update', isAuthenticated, async (req, res) => {
 
 // DELETE CATEGORY
 
+// find expenses for category
+
+router.get('/:categoryId/expenses', isAuthenticated, async (req, res) => {
+	try {
+		const userId = req.payload._id
+		const categoryId = req.params.categoryId
+		const foundExpensesArr = await DailyExpenses.find({ user: userId, category: categoryId })
+		res.json({ foundExpensesArr })
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({ message: 'BE Error while fetching category expenses' })
+	}
+})
+
+// move expenses to new category
+
+router.post('/:oldCategoryId/expenses/move/:newCategoryId', isAuthenticated, async (req, res) => {
+	try {
+		const userId = req.payload._id
+		const oldCategoryId = req.params.oldCategoryId
+		const newCategoryId = req.params.newCategoryId
+
+		const updatedExpensesResult = await DailyExpenses.updateMany(
+			{ user: userId, category: oldCategoryId },
+			{
+				$set: {
+					category: newCategoryId,
+				},
+			},
+			{ new: true }
+		)
+		if (!updatedExpensesResult) {
+			return res.status(404).json({ message: 'Budget or category not found' })
+		}
+		res.status(200).json(updatedExpensesResult)
+	} catch (err) {
+		console.log('Error while moving expenses to a new category', err)
+		res.status(500).json('Error while moving expenses to a new category')
+	}
+})
+
+// delete expenses in category
+
+router.delete('/:categoryId/expenses/delete', isAuthenticated, async (req, res) => {
+	try {
+		const userId = req.payload._id
+		const categoryId = req.params.categoryId
+		const deleteResult = await DailyExpenses.deleteMany({ user: userId, category: categoryId })
+
+		return deleteResult.deletedCount === 0
+			? res.status(404).json({ message: 'Found no expenses to delete in this category.' })
+			: res.status(200).json({ message: `${deleteResult.deletedCount} expense(s) deleted successfully.` })
+	} catch (err) {
+		console.log('Error while deleting expenses within this category.', err)
+		res.status(500).json('Error while deleting expenses within this category')
+	}
+})
+
+// delete category
+
 router.delete('/categories/delete/:categoryId', isAuthenticated, async (req, res) => {
 	try {
 		const userId = req.payload._id
 		const categoryId = req.params.categoryId
-		const budget = await MonthlyBudget.findOneAndUpdate(
+		const updatedBudget = await MonthlyBudget.findOneAndUpdate(
 			{ user: userId },
 			{
 				$pull: {
@@ -280,10 +341,10 @@ router.delete('/categories/delete/:categoryId', isAuthenticated, async (req, res
 			},
 			{ new: true }
 		)
-		if (!budget) {
+		if (!updatedBudget) {
 			return res.status(404).json({ message: 'Budget or category not found' })
 		}
-		res.status(200).json(budget)
+		res.status(200).json(updatedBudget)
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({ message: 'BE Error while deleting existing category' })
@@ -292,7 +353,7 @@ router.delete('/categories/delete/:categoryId', isAuthenticated, async (req, res
 
 // ---------------------------------------------------------------------------------------------------
 
-// ADD DAILY EXPENSE
+// ADD NEW DAILY EXPENSE
 
 router.post('/addexpense', isAuthenticated, async (req, res) => {
 	try {
@@ -301,7 +362,7 @@ router.post('/addexpense', isAuthenticated, async (req, res) => {
 		const newDailyExpense = await DailyExpenses.create({
 			date: dailyExpenseData.date,
 			user: userId,
-			category: dailyExpenseData.category,
+			category: new mongoose.Types.ObjectId(dailyExpenseData.category),
 			name: dailyExpenseData.name,
 			amount: dailyExpenseData.amount,
 		})
