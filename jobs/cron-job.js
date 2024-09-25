@@ -4,7 +4,7 @@ const DailyExpenses = require('../models/DailyExpenses.model')
 const MonthlyBudget = require('../models/MonthlyBudget.model')
 
 const startCronJob = () => {
-	cron.schedule('0 1,13 * * *', async () => {
+	cron.schedule('0 * * * *', async () => {
 		try {
 			const ttlHours = 24
 			const cutoffDate = new Date()
