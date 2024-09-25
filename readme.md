@@ -1,7 +1,8 @@
-# [IN REVISION] 👷🐽<br />sparsam - An awesome budgeting app
+# sparsam - An awesome budgeting app
 
 > [!IMPORTANT]
-> Please note that this project is currently in revision. The demo still works, of course. You can follow my progress here or on [Linkedin](https://linkedin.com/in/fraulueneburg)
+>
+> While this app is no longer in revision, there are still a few minor improvements being implemented here and there. You can follow my progress here or on [Linkedin](https://linkedin.com/in/fraulueneburg)
 
 ---
 
@@ -39,6 +40,7 @@ This application handles the **backend** of the sparsam budgeting app. [See the 
 | **Node.js:**         | JavaScript runtime environment for server-side development   |
 | **Express.js:**      | Backend web application framework for Node.js.               |
 | **Axios:**           | For uncomplicated HTTP requests to interact with the backend |
+| **Mode Cron:**       | In case you want the delete-dummy-accounts-after-24h option  |
 
 ## 3. Installation
 
@@ -51,7 +53,7 @@ git clone https://github.com/fraulueneburg/sparsam-be.git
 ### Install dependencies:
 
 ```
-npm install mongo-db express express-jwt axios bcryptjs cookie-parser cors jsonwebtoken mongoose morgan
+npm install mongo-db express express-jwt axios bcryptjs cookie-parser cors jsonwebtoken mongoose morgan node-cron
 ```
 
 ### Set up your frontend
@@ -95,7 +97,7 @@ npm install mongo-db express express-jwt axios bcryptjs cookie-parser cors jsonw
 
 ## 5. Team
 
-Sparsam was created in a team with [Michel Saber](https://github.com/michelsaber).
+Sparsam’s code base was completely revised by me, Wiebke, in 2024. The very first version of the App started out as a final project at the Ironhack Coding Bootcamp in 2023 and was created in a team with [Michel Saber](https://github.com/michelsaber).
 
 ---
 
