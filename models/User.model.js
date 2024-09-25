@@ -19,6 +19,7 @@ const userSchema = new Schema(
 		monthlyBudget: { type: Schema.Types.ObjectId, ref: 'monthlyBudget' },
 		savingGoals: [{ type: Schema.Types.ObjectId, ref: 'savingGoals' }],
 		dailyExpenses: [{ type: Schema.Types.ObjectId, ref: 'dailyExpenses' }],
+		isTemporary: { type: Boolean, default: false },
 	},
 	{
 		timestamps: true,
