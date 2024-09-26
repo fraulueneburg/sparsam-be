@@ -40,13 +40,21 @@ router.post('/signup', async (req, res) => {
 // NO-SIGNUP-SIGNUP ROUTE
 
 router.post('/one-click-signup', async (req, res) => {
-	const dateToday = new Date().toISOString()
-	const dateYesterday = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString()
-	const subtractDaysFromToday = (numDays) => {
-		return new Date(new Date().setDate(new Date().getDate() - numDays)).toISOString()
+	const normalizeToMidnightUTC = (date) => {
+		const utcDate = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()))
+		return utcDate.toISOString()
 	}
-	const randomNum = Math.floor(Math.random() * 10000)
+	const subtractDaysFromToday = (numDays) => {
+		const today = new Date()
+		today.setUTCHours(0, 0, 0, 0)
+		today.setUTCDate(today.getUTCDate() - numDays)
+		return normalizeToMidnightUTC(today)
+	}
 
+	const dateToday = normalizeToMidnightUTC(new Date())
+	const dateYesterday = subtractDaysFromToday(1)
+
+	const randomNum = Math.floor(Math.random() * 10000)
 	const saltRounds = 13
 	const salt = bcrypt.genSaltSync(saltRounds)
 	const hash = bcrypt.hashSync(randomNum.toString(), salt)
