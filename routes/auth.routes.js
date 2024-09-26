@@ -42,7 +42,7 @@ router.post('/signup', async (req, res) => {
 router.post('/one-click-signup', async (req, res) => {
 	const dateToday = new Date().toISOString()
 	const dateYesterday = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString()
-	const dateTodayMinusDays = (numDays) => {
+	const subtractDaysFromToday = (numDays) => {
 		return new Date(new Date().setDate(new Date().getDate() - numDays)).toISOString()
 	}
 	const randomNum = Math.floor(Math.random() * 10000)
@@ -175,84 +175,84 @@ router.post('/one-click-signup', async (req, res) => {
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(2),
+			date: subtractDaysFromToday(2),
 			category: categoryIds[0],
 			name: 'groceries',
 			amount: 34.91,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(2),
+			date: subtractDaysFromToday(2),
 			category: categoryIds[4],
 			name: 'air refresher',
 			amount: 1.99,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(5),
+			date: subtractDaysFromToday(5),
 			category: categoryIds[0],
 			name: 'groceries',
 			amount: 14.29,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(8),
+			date: subtractDaysFromToday(8),
 			category: categoryIds[4],
 			name: 'car repair',
 			amount: 124.0,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(10),
+			date: subtractDaysFromToday(10),
 			category: categoryIds[6],
 			name: 'cat food',
 			amount: 19.99,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(14),
+			date: subtractDaysFromToday(14),
 			category: categoryIds[1],
 			name: 'ballet class',
 			amount: 80.0,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(14),
+			date: subtractDaysFromToday(14),
 			category: categoryIds[1],
 			name: 'fishing gear',
 			amount: 28.93,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(14),
+			date: subtractDaysFromToday(14),
 			category: categoryIds[0],
 			name: 'groceries',
 			amount: 57.23,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(20),
+			date: subtractDaysFromToday(20),
 			category: categoryIds[0],
 			name: 'groceries',
 			amount: 61.48,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(31),
+			date: subtractDaysFromToday(31),
 			category: categoryIds[0],
 			name: 'chocolate bar',
 			amount: 1.49,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(31),
+			date: subtractDaysFromToday(31),
 			category: categoryIds[7],
 			name: 'nose surgery',
 			amount: 1500,
 		},
 		{
 			user: payload._id,
-			date: dateTodayMinusDays(31),
+			date: subtractDaysFromToday(31),
 			category: categoryIds[3],
 			name: 'plane tickets',
 			amount: 263.02,
