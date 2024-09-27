@@ -365,6 +365,7 @@ router.post('/addexpense', isAuthenticated, async (req, res) => {
 			category: new mongoose.Types.ObjectId(dailyExpenseData.category),
 			name: dailyExpenseData.name,
 			amount: dailyExpenseData.amount,
+			dateFieldUpdatedAt: new Date(),
 		})
 		res.status(201).json(newDailyExpense)
 	} catch (err) {
@@ -376,22 +377,22 @@ router.post('/addexpense', isAuthenticated, async (req, res) => {
 // UPDATE DAILY EXPENSE
 
 router.post('/updateexpense/:dailyExpenseId', isAuthenticated, async (req, res) => {
-	const expenseId = req.params.dailyExpenseId
-	const updatedExpenseData = req.body
+	const { dailyExpenseId } = req.params
+	const { category, name, amount } = req.body
+	const date = new Date(req.body.date)
+	const existingExpense = await DailyExpenses.findById(dailyExpenseId)
+	const wasDateUpdated = existingExpense.date.getTime() !== date.getTime()
 
+	const newExpenseData = {
+		date: date,
+		category: category,
+		name: name,
+		amount: amount,
+		dateFieldUpdatedAt: wasDateUpdated ? new Date().toISOString() : existingExpense.dateFieldUpdatedAt,
+	}
 	try {
-		const updatedExpense = await DailyExpenses.findByIdAndUpdate(
-			expenseId,
-			{
-				date: updatedExpenseData.date,
-				category: updatedExpenseData.category,
-				name: updatedExpenseData.name,
-				amount: updatedExpenseData.amount,
-			},
-			{ new: true }
-		)
+		const updatedExpense = await DailyExpenses.findByIdAndUpdate(dailyExpenseId, newExpenseData, { new: true })
 		res.status(201).json(updatedExpense)
-		res.redirect(`/budget`)
 	} catch (err) {
 		console.log(err)
 	}

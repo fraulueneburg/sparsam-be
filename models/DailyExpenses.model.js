@@ -7,6 +7,7 @@ const dailyExpensesSchema = new Schema(
 		category: { type: Schema.Types.ObjectId, ref: 'monthlyBudget.categories', required: true },
 		name: { type: String, required: true },
 		amount: { type: Number, required: true },
+		dateFieldUpdatedAt: { type: Date },
 	},
 	{
 		timestamps: true,

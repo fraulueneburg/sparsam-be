@@ -138,6 +138,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[4],
 			name: 'car wash',
 			amount: 45.0,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -145,6 +146,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[7],
 			name: 'headache pills',
 			amount: 9.99,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -152,6 +154,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[6],
 			name: 'hamster food',
 			amount: 19.95,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -159,6 +162,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[8],
 			name: 'box of hamsters',
 			amount: 120.0,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -166,6 +170,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[2],
 			name: 'even more drinks',
 			amount: 50.0,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -173,6 +178,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[2],
 			name: 'more drinks',
 			amount: 20,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -180,6 +186,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[2],
 			name: 'drinks',
 			amount: 10,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -187,6 +194,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[0],
 			name: 'groceries',
 			amount: 34.91,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -194,6 +202,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[4],
 			name: 'air refresher',
 			amount: 1.99,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -201,6 +210,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[0],
 			name: 'groceries',
 			amount: 14.29,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -208,6 +218,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[4],
 			name: 'car repair',
 			amount: 124.0,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -215,6 +226,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[6],
 			name: 'cat food',
 			amount: 19.99,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -222,6 +234,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[1],
 			name: 'ballet class',
 			amount: 80.0,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -229,6 +242,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[1],
 			name: 'fishing gear',
 			amount: 28.93,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -236,6 +250,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[0],
 			name: 'groceries',
 			amount: 57.23,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -243,6 +258,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[0],
 			name: 'groceries',
 			amount: 61.48,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -250,6 +266,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[0],
 			name: 'chocolate bar',
 			amount: 1.49,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -257,6 +274,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[7],
 			name: 'nose surgery',
 			amount: 1500,
+			dateFieldUpdatedAt: dateToday,
 		},
 		{
 			user: payload._id,
@@ -264,6 +282,7 @@ router.post('/one-click-signup', async (req, res) => {
 			category: categoryIds[3],
 			name: 'plane tickets',
 			amount: 263.02,
+			dateFieldUpdatedAt: dateToday,
 		},
 	])
 
