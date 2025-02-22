@@ -42,7 +42,3 @@ module.exports = (app) => {
 	app.use(express.urlencoded({ extended: false }))
 	app.use(cookieParser())
 }
-
-// debugging
-console.log('CORS settings:', corsOptions);
-console.log('Allowed frontend URL:', FRONTEND_URL);
