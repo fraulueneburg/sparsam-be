@@ -40,7 +40,7 @@ This application handles the **backend** of the sparsam budgeting app. [See the 
 | **Node.js:**         | JavaScript runtime environment for server-side development   |
 | **Express.js:**      | Backend web application framework for Node.js.               |
 | **Axios:**           | For uncomplicated HTTP requests to interact with the backend |
-| **Mode Cron:**       | In case you want the delete-dummy-accounts-after-24h option  |
+| **Node Cron:**       | In case you want the delete-dummy-accounts-after-24h option  |
 
 ## 3. Installation
 
@@ -53,7 +53,7 @@ git clone https://github.com/fraulueneburg/sparsam-be.git
 ### Install dependencies:
 
 ```
-npm install mongo-db express express-jwt axios bcryptjs cookie-parser cors jsonwebtoken mongoose morgan node-cron
+npm install mongodb express express-jwt axios bcryptjs cookie-parser cors jsonwebtoken mongoose morgan node-cron
 ```
 
 ### Set up your frontend
