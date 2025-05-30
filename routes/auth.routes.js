@@ -6,8 +6,6 @@ const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 const { isAuthenticated } = require('../middlewares/jwt.auth')
 
-// SIGNUP ROUTE
-
 router.post('/signup', async (req, res) => {
 	const saltRounds = 13
 	const salt = bcrypt.genSaltSync(saltRounds)
@@ -36,8 +34,6 @@ router.post('/signup', async (req, res) => {
 
 	res.status(201).json({ newUser, authToken })
 })
-
-// NO-SIGNUP-SIGNUP ROUTE
 
 router.post('/one-click-signup', async (req, res) => {
 	const normalizeToMidnightUTC = (date) => {
@@ -271,7 +267,7 @@ router.post('/one-click-signup', async (req, res) => {
 		{
 			user: payload._id,
 			date: subtractDaysFromToday(31),
-			category: categoryIds[7],
+			category: categoryIds[5],
 			name: 'nose surgery',
 			amount: 1500,
 			dateFieldUpdatedAt: dateToday,
@@ -293,8 +289,6 @@ router.post('/one-click-signup', async (req, res) => {
 
 	res.status(201).json({ newUser, authToken })
 })
-
-// LOGIN ROUTE
 
 router.post('/login', async (req, res) => {
 	try {
@@ -321,14 +315,11 @@ router.post('/login', async (req, res) => {
 })
 
 // VERIFY ROUTE FOR PROTECTED PAGE
-
 router.get('/verify', isAuthenticated, (req, res) => {
 	if (req.payload) {
 		res.status(200).json({ user: req.payload })
 	}
 })
-
-// EDIT PROFILE ROUTE
 
 router.get('/profile', isAuthenticated, async (req, res) => {
 	const userId = req.payload._id
@@ -355,7 +346,7 @@ router.post('/profile', isAuthenticated, async (req, res) => {
 	res.status(200).json({ updatedUser })
 })
 
-router.delete('/profile/delete', isAuthenticated, async (req, res) => {
+router.delete('/profile', isAuthenticated, async (req, res) => {
 	const userId = req.payload._id
 
 	try {

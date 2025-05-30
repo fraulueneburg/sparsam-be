@@ -33,14 +33,13 @@ This application handles the **backend** of the sparsam budgeting app. [See the 
 
 ## 2. Technologies
 
-| Name                 | Description                                                  |
-| :------------------- | :----------------------------------------------------------- |
-| **Create React App** | Bootstrap code                                               |
-| **MongoDB:**         | Non-relational database                                      |
-| **Node.js:**         | JavaScript runtime environment for server-side development   |
-| **Express.js:**      | Backend web application framework for Node.js.               |
-| **Axios:**           | For uncomplicated HTTP requests to interact with the backend |
-| **Node Cron:**       | In case you want the delete-dummy-accounts-after-24h option  |
+| Name            | Description                                                  |
+| :-------------- | :----------------------------------------------------------- |
+| **MongoDB:**    | Non-relational database                                      |
+| **Node.js:**    | JavaScript runtime environment for server-side development   |
+| **Express.js:** | Backend web application framework for Node.js.               |
+| **Axios:**      | For uncomplicated HTTP requests to interact with the backend |
+| **Node Cron:**  | In case you want the delete-dummy-accounts-after-24h option  |
 
 ## 3. Installation
 
@@ -73,31 +72,52 @@ npm install mongodb express express-jwt axios bcryptjs cookie-parser cors jsonwe
 
 ### User-related Endpoints
 
-| Name                          | Description          |
-| :---------------------------- | :------------------- |
-| `GET /auth/profile`           | Get the user data    |
-| `POST /auth/profile`          | Update the user data |
-| `DELETE /auth/profile/delete` | Delete user data     |
+| Name                   | Description          |
+| :--------------------- | :------------------- |
+| `GET /auth/profile`    | Get the user data    |
+| `POST /auth/profile`   | Update the user data |
+| `DELETE /auth/profile` | Delete user data     |
 
 ### Budget-related Endpoints
 
-| Name                    | Description                                     |
-| :---------------------- | :---------------------------------------------- |
-| `GET /budget/`          | Get the user’s budget and daily expenses        |
-| `POST /budget/settings` | Get the user’s budget data                      |
-| `POST /budget/create`   | Update budget data / create budget for new user |
+| Name                                    | Description                          |
+| :-------------------------------------- | :----------------------------------- |
+| `GET /budget/`                          | Get user’s budget and daily expenses |
+| `GET /budget?excludeDailyExpenses=true` | Get user’s budget only               |
+| -                                       | -                                    |
+| `PUT /budget/currency`                  | Update currency                      |
+| -                                       | -                                    |
+| `POST /budget/earnings`                 | Add new monthly earning              |
+| `PUT /budget/earnings/:earningId`       | Update monthly earning               |
+| `DELETE /budget/earnings/:earningId`    | Delete monthly earning               |
+| -                                       | -                                    |
+| `POST /budget/expenses`                 | Add new monthly expense              |
+| `PUT /budget/expenses/:expenseId`       | Update monthly expense               |
+| `DELETE /budget/expenses/:expenseId`    | Delete monthly expense               |
 
-### DailyExpenses-related Endpoints
+### Category-related Endpoints
 
-| Name                                         | Description                       |
-| :------------------------------------------- | :-------------------------------- |
-| `POST /budget/addexpense`                    | Adds a new daily expense          |
-| `POST /budget/updateexpense/:dailyExpenseId` | Updates an existing daily expense |
-| `DELETE /deleteexpense/:dailyExpenseId`      | Deletes an existing daily expense |
+| Name                                               | Description                                                  |
+| :------------------------------------------------- | :----------------------------------------------------------- |
+| `POST /categories`                                 | Add new category                                             |
+| `PUT /categories/:categoryId`                      | Update category                                              |
+| `DELETE /categories/:categoryId`                   | Delete category                                              |
+| -                                                  | -                                                            |
+| `GET /categories/:categoryId/daily-expenses`       | Get all daily expenses in this category                      |
+| `POST /categories/:categoryId/daily-expenses/move` | Move all daily expenses from this category to a new category |
+| `DELETE /categories/:categoryId/daily-expenses`    | Delete all daily expenses in this category                   |
+
+### Daily-Expenses-related Endpoints
+
+| Name                                     | Description                       |
+| :--------------------------------------- | :-------------------------------- |
+| `POST /daily-expenses/`                  | Adds a new daily expense          |
+| `PUT /daily-expenses/:dailyExpenseId`    | Updates an existing daily expense |
+| `DELETE /daily-expenses/:dailyExpenseId` | Deletes an existing daily expense |
 
 ## 5. Team
 
-Sparsam’s code base was completely revised by me, Wiebke, in 2024. The very first version of the App started out as a final project at the Ironhack Coding Bootcamp in 2023 and was created in a team with [Michel Saber](https://github.com/michelsaber).
+Sparsam’s code base was completely revised by me, Wiebke, in 2024 and 2025. The very first version of the App started out as a final project at the Ironhack Coding Bootcamp in 2023 and was created in a team with [Michel Saber](https://github.com/michelsaber).
 
 ---
 
