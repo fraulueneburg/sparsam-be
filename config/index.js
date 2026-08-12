@@ -29,7 +29,7 @@ module.exports = (app) => {
 			origin: [FRONTEND_URL],
 			methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 			allowedHeaders: ['Content-Type', 'Authorization'],
-		})
+		}),
 	)
 
 	// In development environment the app logs
